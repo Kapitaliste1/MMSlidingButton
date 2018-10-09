@@ -17,7 +17,7 @@ protocol SlideButtonDelegate{
     
     var delegate: SlideButtonDelegate?
     
-    @IBInspectable var dragPointWidth: CGFloat = 70 {
+    @IBInspectable var dragPointWidth: CGFloat = 40 {
         didSet{
             setStyle()
         }
@@ -65,7 +65,7 @@ protocol SlideButtonDelegate{
         }
     }
     
-    @IBInspectable var buttonCornerRadius: CGFloat = 30 {
+    @IBInspectable var buttonCornerRadius: CGFloat = 28 {
         didSet{
             setStyle()
         }
@@ -103,7 +103,7 @@ protocol SlideButtonDelegate{
         self.buttonLabel.text               = self.buttonText
         self.dragPointButtonLabel.text      = self.buttonText
         self.dragPoint.frame.size.width     = self.dragPointWidth
-        self.dragPoint.backgroundColor      = self.dragPointColor
+        self.dragPoint.backgroundColor      = UIColor.clear
         self.backgroundColor                = self.buttonColor
         self.imageView.image                = imageName
         self.buttonLabel.textColor          = self.buttonTextColor
@@ -118,18 +118,18 @@ protocol SlideButtonDelegate{
         self.backgroundColor              = self.buttonColor
         
         self.dragPoint                    = UIView(frame: CGRect(x: dragPointWidth - self.frame.size.width, y: 0, width: self.frame.size.width, height: self.frame.size.height))
-        self.dragPoint.backgroundColor    = dragPointColor
+        self.dragPoint.backgroundColor    = UIColor.clear
         self.dragPoint.layer.cornerRadius = buttonCornerRadius
         self.addSubview(self.dragPoint)
         
         if !self.buttonText.isEmpty{
             
-            self.buttonLabel               = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height))
+            self.buttonLabel               = UILabel(frame: CGRect(x: self.frame.size.width * 0.3, y: 0, width: self.frame.size.width * 0.6, height: self.frame.size.height))
             self.buttonLabel.textAlignment = .center
             self.buttonLabel.text          = buttonText
-            self.buttonLabel.textColor     = UIColor.white
-            self.buttonLabel.font          = self.buttonFont
-            self.buttonLabel.textColor     = self.buttonTextColor
+            self.buttonLabel.font          = UIFont(name: "Lato-Regular", size: 14)
+            self.buttonLabel.textColor     = UIColor.colorWithHexString("#4A4A4A")
+            self.buttonLabel.numberOfLines = 2
             self.addSubview(self.buttonLabel)
             
             self.dragPointButtonLabel               = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height))
@@ -138,7 +138,7 @@ protocol SlideButtonDelegate{
             self.dragPointButtonLabel.textColor     = UIColor.white
             self.dragPointButtonLabel.font          = self.buttonFont
             self.dragPointButtonLabel.textColor     = self.dragPointTextColor
-            self.dragPoint.addSubview(self.dragPointButtonLabel)
+            //            self.dragPoint.addSubview(self.dragPointButtonLabel)
         }
         self.bringSubview(toFront: self.dragPoint)
         
@@ -146,6 +146,8 @@ protocol SlideButtonDelegate{
             self.imageView = UIImageView(frame: CGRect(x: self.frame.size.width - dragPointWidth, y: 0, width: self.dragPointWidth, height: self.frame.size.height))
             self.imageView.contentMode = .center
             self.imageView.image = self.imageName
+            self.imageView.backgroundColor = UIColor.colorWithHexString("#1076E6")
+            self.imageView.layer.cornerRadius = buttonCornerRadius
             self.dragPoint.addSubview(self.imageView)
         }
         
@@ -174,10 +176,10 @@ protocol SlideButtonDelegate{
             
             let animationDuration:Double = abs(Double(velocityX) * 0.0002) + 0.2
             UIView.transition(with: self, duration: animationDuration, options: UIViewAnimationOptions.curveEaseOut, animations: {
-                }, completion: { (Status) in
-                    if Status{
-                        self.animationFinished()
-                    }
+            }, completion: { (Status) in
+                if Status{
+                    self.animationFinished()
+                }
             })
         }
     }
@@ -195,8 +197,8 @@ protocol SlideButtonDelegate{
         }) { (Status) in
             if Status{
                 self.dragPointButtonLabel.text      = self.buttonUnlockedText
-                self.imageView.isHidden               = true
-                self.dragPoint.backgroundColor      = self.buttonUnlockedColor
+                self.imageView.isHidden               = false
+                self.dragPoint.backgroundColor      = UIColor.clear
                 self.dragPointButtonLabel.textColor = self.buttonUnlockedTextColor
                 self.delegate?.buttonStatus(status: "Unlocked", sender: self)
             }
@@ -211,7 +213,7 @@ protocol SlideButtonDelegate{
             if Status{
                 self.dragPointButtonLabel.text      = self.buttonText
                 self.imageView.isHidden               = false
-                self.dragPoint.backgroundColor      = self.dragPointColor
+                self.dragPoint.backgroundColor      = UIColor.clear
                 self.dragPointButtonLabel.textColor = self.dragPointTextColor
                 self.unlocked                       = false
                 //self.delegate?.buttonStatus("Locked")

@@ -158,6 +158,7 @@
 				TargetAttributes = {
 					B8904AFD1D066D3B0006BA69 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = V99E2QDT83;
 					};
 					B8904B111D066D3B0006BA69 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -343,10 +344,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = V99E2QDT83;
 				INFOPLIST_FILE = "$(SRCROOT)/Example/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.thirdgene.MMSlidingButton;
+				PRODUCT_BUNDLE_IDENTIFIER = com.thirdgene.MMSlidingButtons;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -355,10 +357,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = V99E2QDT83;
 				INFOPLIST_FILE = "$(SRCROOT)/Example/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.thirdgene.MMSlidingButton;
+				PRODUCT_BUNDLE_IDENTIFIER = com.thirdgene.MMSlidingButtons;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
